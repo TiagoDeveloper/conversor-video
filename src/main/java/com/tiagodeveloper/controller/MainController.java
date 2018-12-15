@@ -76,11 +76,13 @@ public class MainController {
 				.build();
 		
 		File arq = new File(file.getOriginalFilename());
+		
+//		file.transferTo(arq);
 		FileUtils.copyInputStreamToFile(file.getInputStream(), arq);
 		
 		s3client.putObject("aws-conversor-videos", file.getOriginalFilename(), arq);
 		
-		
+		arq.delete();
 		
 		return "redirect:/";
     }
