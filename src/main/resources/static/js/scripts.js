@@ -54,7 +54,7 @@ function verificaDisponibilidadeVideo(){
 						if(output.state === 'finished'){
 							
 							let videoDiv = document.createElement('div');
-							videoDiv.className = "col s12";
+							videoDiv.className = "videos col s12";
 							let video = document.createElement('video');
 							video.setAttribute("controls", "controls");
 							video.className = "responsive-video";
