@@ -1,24 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"/>
-<title>Home</title>
+<title>Conversor de video</title>
+ <link type="text/css" rel="stylesheet" th:href="@{/css/materialize.min.css}"  media="screen,projection"/>
 </head>
 <body>
-	<h1>Hello world</h1>
+
+<div class="container">
+	<h1>Conversor de video</h1>
 	<br/>
-	<form method="POST" enctype="multipart/form-data" action="/salvar">
-		<table>
-			<tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
-			<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
-		</table>
+		
+	<form id="form" action="/salvar" enctype="multipart/form-data" method="POST">
+	  <div class="file-field input-field">
+	    <div class="btn">
+	      <span>File</span>
+	      <input id="file" type="file" name="file"/>
+	    </div>
+	    <div class="file-path-wrapper">
+	      <input class="file-path validate" type="text"/>
+	    </div>
+	  </div>
+	  <button id="converter-btn" type="submit" class="waves-effect waves-light btn">converter</button>
 	</form>
+	
+	<button id="novo-btn" onclick="novoVideo()" type="submit" class="waves-effect waves-light btn" style="display:none;">Novo</button>
+	
 	<br/>
-	<video width="320" height="240" controls>
-	  <source th:src="${movie}" type="video/mp4"/>
-<!-- 	  <source src="movie.ogg" type="video/ogg"> -->
-		Your browser does not support the video tag.
-	</video>
+
+		<div id="progress" class="progress" style="display: none;">
+		    <div class="indeterminate" ></div>
+		</div>
+		<div id="videos">
+		</div>
+	
+</div>	
+	
+	<!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" th:src="@{/js/materialize.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+	
 	
 </body>
 </html>
