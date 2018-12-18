@@ -3,38 +3,43 @@ var outputs = [];
 var verificador = null;
 var progressDiv = null;
 var converterBtn = document.getElementById('converter-btn');
-document.getElementById('form').addEventListener('submit',callback, false);
+var inputFile = document.getElementById("file");
 
-function callback(e){
+document.getElementById('form').addEventListener('submit',submitForm, false);
+
+
+function submitForm(e){
 	e.preventDefault();
-	let form = e.target;
-	let formData = new FormData(form);
-	let request = new XMLHttpRequest();
-	
-	request.onreadystatechange = function(){
-		if(request.readyState === 4) {
-			if(request.status === 200) { 
-				json = JSON.parse(request.responseText);
-				
-				
-				json.outputs.forEach(e => {
-					outputs.push(e.id);
-				});
-				
-				verificador = setInterval(verificaDisponibilidadeVideo, 5000);
-				
+	if(inputFile.value !== ''){
+		
+		let form = e.target;
+		let formData = new FormData(form);
+		let request = new XMLHttpRequest();
+		
+		request.onreadystatechange = function(){
+			if(request.readyState === 4) {
+				if(request.status === 200) { 
+					json = JSON.parse(request.responseText);
+					
+					
+					json.outputs.forEach(e => {
+						outputs.push(e.id);
+					});
+					
+					verificador = setInterval(verificaDisponibilidadeVideo, 5000);
+					
+				}
 			}
 		}
-    }
-	let inputFile = document.getElementById('file');
-	inputFile.disabled = true;
-	converterBtn.disabled = true;
-	
-	progressDiv = document.getElementById('progress');
-	progressDiv.style.display = 'block';
-	
-    request.open(form.method, form.action);
-    request.send(formData);
+		inputFile.disabled = true;
+		converterBtn.disabled = true;
+		
+		progressDiv = document.getElementById('progress');
+		progressDiv.style.display = 'block';
+		
+		request.open(form.method, form.action);
+		request.send(formData);
+	}
 	
 }
 
@@ -65,6 +70,7 @@ function verificaDisponibilidadeVideo(){
 							
 							source.type = `video/${tipo}`;
 							video.appendChild(source);
+							video.append("Vídeo não suportado pelo navegador!!");
 							videoDiv.appendChild(video);
 							
 							

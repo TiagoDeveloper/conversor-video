@@ -6,27 +6,33 @@
 <title>Conversor de video</title>
  <link type="text/css" rel="stylesheet" th:href="@{/css/materialize.min.css}"  media="screen,projection"/>
  <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}" />
+ <!--Let browser know website is optimized for mobile-->
+ <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
 
 <div class="container">
-	<h1>Conversor de video</h1>
+	<div class="row title-conversor">
+		<h1>Conversor de video</h1>
+	</div>
 	<br/>
-		
-	<form id="form" action="/salvar" enctype="multipart/form-data" method="POST">
-	  <div class="file-field input-field">
-	    <div class="btn">
-	      <span>File</span>
-	      <input id="file" type="file" name="file"/>
-	    </div>
-	    <div class="file-path-wrapper">
-	      <input class="file-path validate" type="text"/>
-	    </div>
-	  </div>
-	  <button id="converter-btn" type="submit" class="waves-effect waves-light btn">converter</button>
-	</form>
-	
-	<button id="novo-btn" onclick="novoVideo()" type="submit" class="waves-effect waves-light btn" style="display:none;">Novo</button>
+	<div class="row">
+		<form id="form" action="/salvar" enctype="multipart/form-data" method="POST">
+		  <div class="file-field input-field">
+		    <div class="btn">
+		      <span>File</span>
+		      <input id="file" type="file" name="file" required="required" />
+		    </div>
+		    <div class="file-path-wrapper">
+		      <input class="file-path validate" type="text"/>
+		    </div>
+		  </div>
+		  <button id="converter-btn" type="submit" class="waves-effect waves-light btn">converter</button>
+		</form>
+	</div>	
+	<div class="row">
+		<button id="novo-btn" onclick="novoVideo()" type="submit" class="waves-effect waves-light btn" style="display:none;">Novo</button>
+	</div>
 	
 	<br/>
 
